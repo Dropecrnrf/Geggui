@@ -1,2 +1,2 @@
 # Geggui
-Réseau social (Twitter)
+Réseau social
