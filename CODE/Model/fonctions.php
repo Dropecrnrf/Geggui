@@ -80,13 +80,13 @@ class fonctions{
       session_destroy();
       // ------------- fin solution logout ----------------
     }
-    public static function tableUserVerif($email, $pseudo)
+    public static function tableUserVerif($email)
     {
         // Préparation de la requete
-        $query = db()->prepare("SELECT * FROM USERS WHERE email = ? AND nomUser = ?");
+        $query = db()->prepare("SELECT * FROM USER WHERE email = ?");
     
         // Execution de la requete
-        $query->execute([$email, $pseudo]);
+        $query->execute([$email]);
     
         // Récuperation des données s'il y en a
         $record = $query->fetchAll(PDO::FETCH_OBJ);
@@ -100,5 +100,24 @@ class fonctions{
         $query->execute($data);    // executer la requete sql
         $records = $query->fetchAll(PDO::FETCH_ASSOC);    // recuperer les donnees de la base
         return $records;
+    }
+    public static function verifinscription($email) {
+        $donneeUser = fonctions::tableUserVerif($email);
+        $mail = "";
+        if ($donneeUser !== false) {
+            foreach ($donneeUser as $key => $value) {
+                $mail = $value->email;
+            }
+            if ($mail != "") {
+                if ($mail == $email) {
+                    $_SESSION["verif"] = true;
+                } 
+                else {
+                    $_SESSION["verif"] = false;
+                }
+            }
+        } else {
+            $_SESSION["verif"] = false;
+        }
     }
 }

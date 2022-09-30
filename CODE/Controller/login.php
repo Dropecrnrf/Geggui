@@ -21,9 +21,8 @@ if($_SESSION["logged"] == true && $_SESSION["role"] == false) {
   /*header("location:../vue/accueilUser.php");*/
   echo "user";
 } elseif ($_SESSION["logged"] == true && $_SESSION["role"]) {
- /* header("location:../vue/accueilArtiste.php");*/
- echo "admin";
+  /*header("location:../vue/accueilArtiste.php");*/
+  echo "admin";
 } elseif($_SESSION["logged"] == false) {
-  /*header("location:../Vue/login.php");*/
-  echo "pas log";
+  header("location:../Vue/login.php");
 }
