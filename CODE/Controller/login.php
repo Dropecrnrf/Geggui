@@ -24,6 +24,5 @@ if($_SESSION["logged"] == true && $_SESSION["role"] == false) {
  /* header("location:../vue/accueilArtiste.php");*/
  echo "admin";
 } elseif($_SESSION["logged"] == false) {
-  /*header("location:../Vue/login.php");*/
-  echo "pas log";
+  header("location:../Vue/login.php");
 }

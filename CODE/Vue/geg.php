@@ -87,17 +87,21 @@
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
+        <strong>jojo(mettre profil)</strong>
       </a>
       <ul class="dropdown-menu text-small shadow">
-        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><a class="dropdown-item" href="profil.php">Profil</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="login.php">Sign in/out (connexion)</a></li>
+        <li><a class="dropdown-item" href="login.php">Sign in/out (si connecter ou pas)</a></li>
       </ul>
     </div>
   </div>
 
   <div class="b-example-divider b-example-vr"></div>
+<div width="300px" height="100px">
+    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+    <button class="w-100 btn btn-primary btn-lg" type="submit">Envoyer</button>
+</div>
 
   </main>
 
