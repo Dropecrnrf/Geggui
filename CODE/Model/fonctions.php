@@ -8,33 +8,33 @@
  * @date année 2022
  */
 session_start();
-require_once("./CODE/const.php");
+require_once("../const.php");
 
-require_once("./CODE/pdo.php");
+require_once("../pdo.php");
 
 class fonctions{
 
-    public static function tableUserMdp($email)
+    public static function tableUserMdp($pseudo)
     {
         // Préparation de la requete
-        $query = db()->prepare("SELECT * FROM USER WHERE email = ?");
+        $query = db()->prepare("SELECT * FROM USER WHERE pseudo = ?");
     
         // Execution de la requete
-        $query->execute([$email]);
+        $query->execute([$pseudo]);
     
         // Récuperation des données s'il y en a
         $record = $query->fetchAll(PDO::FETCH_OBJ);
     
         return $record;
     }
-    public static function login($email, $password) {
+    public static function login($pseudo, $password) {
 
-        $donneeUser = fonctions::tableUserMdp($email);
+        $donneeUser = fonctions::tableUserMdp($pseudo);
         $mdp = "";
         if ($donneeUser !== false) {
             foreach ($donneeUser as $key => $value) {
-                $email = $value->email;
-                $mdp = $value->motDePasse;
+                $pseudo = $value->pseudo;
+                $mdp = $value->mot_de_passe;
                 $role = $value->role;
             }
             if ($mdp != "") {
@@ -80,3 +80,25 @@ class fonctions{
       session_destroy();
       // ------------- fin solution logout ----------------
     }
+    public static function tableUserVerif($email, $pseudo)
+    {
+        // Préparation de la requete
+        $query = db()->prepare("SELECT * FROM USERS WHERE email = ? AND nomUser = ?");
+    
+        // Execution de la requete
+        $query->execute([$email, $pseudo]);
+    
+        // Récuperation des données s'il y en a
+        $record = $query->fetchAll(PDO::FETCH_OBJ);
+    
+        return $record;
+    }
+    public static function inscription($email, $username, $password, $role) {
+        $sql = "INSERT INTO USER (idUser, email, pseudo, mot_de_passe, role) VALUES(NULL, '$email','$username','$password','$role');";
+        $data = [];    // les données pour la requete
+        $query = db()->prepare($sql);    // preparer la requete sql
+        $query->execute($data);    // executer la requete sql
+        $records = $query->fetchAll(PDO::FETCH_ASSOC);    // recuperer les donnees de la base
+        return $records;
+    }
+}

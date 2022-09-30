@@ -18,7 +18,7 @@
         
        
         <div class="login-form">
-            <form method="post">
+            <form method="post" action="../Controller/inscription.php">
                 
                 <h1 class="h3 mb-3 fw-normal">Inscription</h1>
                 <div class="form-floating">

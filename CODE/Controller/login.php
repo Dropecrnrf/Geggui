@@ -9,14 +9,14 @@
  */
 
 // ------------ début solution login vérification ----------------
-require_once("./CODE/Model/fonctions.php");
+require_once("../Model/fonctions.php");
 
-// case: the user submits an email+password
+// case: the user submits an pseudo+password
 
 
-$email = trim(filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL));
+$pseudo = trim(filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_SPECIAL_CHARS));
 $password = trim(filter_input(INPUT_POST, "password"));
-fonctions::login($email, $password);
+fonctions::login($pseudo, $password);
 if($_SESSION["logged"] == true && $_SESSION["role"] == false) {
   /*header("location:../vue/accueilUser.php");*/
   echo "user";
@@ -24,6 +24,6 @@ if($_SESSION["logged"] == true && $_SESSION["role"] == false) {
  /* header("location:../vue/accueilArtiste.php");*/
  echo "admin";
 } elseif($_SESSION["logged"] == false) {
-  /*header("location:../vue/connexion.php");*/
+  /*header("location:../Vue/login.php");*/
   echo "pas log";
 }

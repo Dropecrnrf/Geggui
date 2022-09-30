@@ -8,7 +8,7 @@
  * @date année 2022
  */
 
-require_once("../CODE/const.php");
+require_once("const.php");
 function db(){
     $db = null;
    if ($db === null)

@@ -22,9 +22,7 @@
 </head>
 <body class="text-center">
     <main class="form-signin">
-    <input type="file" accept="image/png, image/jpeg">
-
-            <form method="post">
+            <form method="post" action="../Controller/login.php">
             <h1 class="h3 mb-3 fw-normal">Connectez-vous</h1>
 
             <div class="form-floating">
