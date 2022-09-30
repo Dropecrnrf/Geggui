@@ -44,7 +44,7 @@
              <br><br>                                                                                                   
         
             <div class="button-go">
-                <a href="inscription.php">Céer un compte ?</a>
+                <a href="inscription.php">Créer un compte ?</a>
             </div>
 
             <p class="mt-5 mb-3 text-muted">&copy; Geggui  |  2022</p>
