@@ -102,7 +102,89 @@
 
     <div class="b-example-divider b-example-vr"></div>
 
-</main>
+    
+    <br>
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+      <div class="col-lg-4">
+        <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
+        <h2 class="fw-normal">cocojojo</h2>
+        <p>depitcho_r9</p>
+      </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Possibilité de faire autrement</h2>
+        <p class="lead">Geggui nouveau réseau social</p>
+      </div>
+      <div class="col-md-5">
+
+      </div>
+    </div>    
+    
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Reviens regarde dans le mile</h2>
+        <p class="lead">On va les attendre, pas faire couler l'sang. attendre et faire doucement, on va les attendre sans menacer, oh,
+          le sable tombe, recommencer, c'est mort, y'a que Dieu qu'j'adore, un selfie et j'rigole</p>
+      </div>
+      <div class="col-md-5">
+
+      </div>
+    </div>    
+    
+    <hr class="featurette-divider">
+    
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Musique</h2>
+        <p class="lead">Vive la té-ci, aller vive la caisse</p>
+      </div>
+      <div class="col-md-5">
+
+      </div>
+    </div>
+    
+    <hr class="featurette-divider">
+    
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Hehehe</h2>
+        <p class="lead">Que fait un prêtre dans un garage ?</p>
+      </div>
+      <div class="col-md-5">
+      
+      </div>
+    </div>
+    
+    <hr class="featurette-divider">
+    
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading fw-normal lh-1">Hehehe</h2>
+        <p class="lead">Il démonte un scout.</p>
+      </div>
+      <div class="col-md-5">
+      
+      </div>
+    </div>
+    
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
 
 
 <script src="../index.js"></script>
