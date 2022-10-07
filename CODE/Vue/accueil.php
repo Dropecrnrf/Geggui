@@ -4,7 +4,10 @@
   Version : V1
   Titre   : Projet Geggui - M426
 -->
+<?php 
+require_once("../Controller/affichageMessage.php");
 
+?>
 <!doctype html>
 <html lang="en">
 
@@ -50,6 +53,14 @@
     text-align: center;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .card {
+    flex-direction: row;
+  }
+
+  .card img {
+    width: 30%;
   }
 </style>
 
@@ -105,6 +116,10 @@
     </div>
 
     <div class="b-example-divider b-example-vr"></div>
+
+    <div>
+      <?php afficherMessage()?>
+    </div>
 
 </main>
 

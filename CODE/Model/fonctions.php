@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Model fonctions
  * 
@@ -9,25 +10,26 @@
  */
 session_start();
 require_once("../const.php");
-
 require_once("../pdo.php");
 
-class fonctions{
+class fonctions
+{
 
     public static function tableUserMdp($pseudo)
     {
         // Préparation de la requete
         $query = db()->prepare("SELECT * FROM USER WHERE pseudo = ?");
-    
+
         // Execution de la requete
         $query->execute([$pseudo]);
-    
+
         // Récuperation des données s'il y en a
         $record = $query->fetchAll(PDO::FETCH_OBJ);
-    
+
         return $record;
     }
-    public static function login($pseudo, $password) {
+    public static function login($pseudo, $password)
+    {
 
         $donneeUser = fonctions::tableUserMdp($pseudo);
         $mdp = "";
@@ -39,8 +41,7 @@ class fonctions{
             if ($mdp != "") {
                 if (password_verify($password, $mdp)) {
                     $_SESSION["logged"] = true;
-                } 
-                else {
+                } else {
                     $_SESSION["logged"] = false;
                 }
             }
@@ -50,44 +51,45 @@ class fonctions{
     }
     public static function logout()
     {
-      // ------------- début solution logout ----------------
-    
-      // If it's desired to kill the session, also delete the session cookie.
-      // Note: This will destroy the session, and not just the session data!
-      if (ini_get("session.use_cookies")) {
-        $params = session_get_cookie_params();
-        setcookie(
-          session_name(),
-          '',
-          time() - 42000,
-          $params["path"],
-          $params["domain"],
-          $params["secure"],
-          $params["httponly"]
-        );
-      }
-    
-      // Unset all of the session variables.
-      $_SESSION = array();
-    
-      // Finally, destroy the session.
-      session_destroy();
-      // ------------- fin solution logout ----------------
+        // ------------- début solution logout ----------------
+
+        // If it's desired to kill the session, also delete the session cookie.
+        // Note: This will destroy the session, and not just the session data!
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(
+                session_name(),
+                '',
+                time() - 42000,
+                $params["path"],
+                $params["domain"],
+                $params["secure"],
+                $params["httponly"]
+            );
+        }
+
+        // Unset all of the session variables.
+        $_SESSION = array();
+
+        // Finally, destroy the session.
+        session_destroy();
+        // ------------- fin solution logout ----------------
     }
     public static function tableUserVerif($email)
     {
         // Préparation de la requete
         $query = db()->prepare("SELECT * FROM USER WHERE email = ?");
-    
+
         // Execution de la requete
         $query->execute([$email]);
-    
+
         // Récuperation des données s'il y en a
         $record = $query->fetchAll(PDO::FETCH_OBJ);
-    
+
         return $record;
     }
-    public static function inscription($email, $username, $password) {
+    public static function inscription($email, $username, $password)
+    {
         $password = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO USER (idUser, email, pseudo, mot_de_passe) VALUES(NULL, '$email','$username','$password');";
         $query = db()->prepare($sql);    // preparer la requete sql
@@ -95,7 +97,8 @@ class fonctions{
         $records = $query->fetchAll(PDO::FETCH_ASSOC);    // recuperer les donnees de la base
         return $records;
     }
-    public static function verifinscription($email) {
+    public static function verifinscription($email)
+    {
         $donneeUser = fonctions::tableUserVerif($email);
         $mail = "";
         if ($donneeUser !== false) {
@@ -103,15 +106,45 @@ class fonctions{
                 $mail = $value->email;
             }
             if ($mail == "") {
-                    /*$_SESSION["verif"] = true;*/
-                    return true;      
+                /*$_SESSION["verif"] = true;*/
+                return true;
             } else {
                 /*$_SESSION["verif"] = false;*/
                 return false;
             }
         } else {
-           // $_SESSION["verif"] = false;
-           return true;
+            // $_SESSION["verif"] = false;
+            return true;
         }
     }
+
+    public static function prendreUtilisateurConnecter($nameUsers)
+    {
+        $sql = "SELECT `USER`.`idUser` FROM dbGeggui.`USER`
+        WHERE `USER`.`pseudo` = '$nameUsers';";
+        $query = db()->prepare($sql);
+        $query->execute();
+        $records = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $records;
+    }
+
+    public static function enregistrementUtilisateurConnecter($tableau)
+    {
+        foreach ($tableau as $key => $value) {
+            $_SESSION['nameUsers'] = $value;
+        }
+    }
+
+    public static function prendreMessage()
+    {
+        $sql = "SELECT `MESSAGE`.`content`, `USER`.`pseudo` FROM `dbGeggui`.`MESSAGE` JOIN `dbGeggui`.`USER` ON `USER`.`idUser` = `MESSAGE`.`idUser`";
+        $query = db()->prepare($sql);
+        $query->execute();
+        $records = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $records;
+    }
+
+    
 }
