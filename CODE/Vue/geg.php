@@ -10,7 +10,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Geggui | Accueil</title>
+  <title>Geggui | Geg</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
 
@@ -53,14 +53,17 @@
   }
 </style>
 
-<main class="d-flex flex-nowrap">
-  <h1 class="visually-hidden">Sidebars examples</h1>
+<body>
 
-  <!-- Custom styles for this template -->
-  <link href="https://getbootstrap.com/docs/5.2/examples/sidebars/sidebars.css" rel="stylesheet">
-  </head>
 
-  <body>
+  <main class="d-flex flex-nowrap">
+    <h1 class="visually-hidden">Sidebars examples</h1>
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/5.2/examples/sidebars/sidebars.css" rel="stylesheet">
+    </head>
+
+
 
     <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
       <a href="accueil.php" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -106,10 +109,18 @@
 
     <div class="b-example-divider b-example-vr"></div>
 
-</main>
+    <form action="geg.php" class="geg">
+    <p><label for="w3review">ÇA DIT QUOI L'EQUIPE ?</label></p>
+    <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+    <input type="submit" value="GEG">
+  </form>
+
+  </main>
+
+ 
 
 
-<script src="../index.js"></script>
+  <script src="../index.js"></script>
 </body>
 
 </html>
