@@ -93,11 +93,11 @@ class fonctions{
     
         return $record;
     }
-    public static function inscription($email, $username, $password, $role) {
-        $sql = "INSERT INTO USER (idUser, email, pseudo, mot_de_passe, role) VALUES(NULL, '$email','$username','$password','$role');";
-        $data = [];    // les données pour la requete
+    public static function inscription($email, $username, $password) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "INSERT INTO USER (idUser, email, pseudo, mot_de_passe, role) VALUES(NULL, '$email','$username','$password', '0');";
         $query = db()->prepare($sql);    // preparer la requete sql
-        $query->execute($data);    // executer la requete sql
+        $query->execute();    // executer la requete sql
         $records = $query->fetchAll(PDO::FETCH_ASSOC);    // recuperer les donnees de la base
         return $records;
     }
@@ -108,16 +108,16 @@ class fonctions{
             foreach ($donneeUser as $key => $value) {
                 $mail = $value->email;
             }
-            if ($mail != "") {
-                if ($mail == $email) {
-                    $_SESSION["verif"] = true;
-                } 
-                else {
-                    $_SESSION["verif"] = false;
-                }
+            if ($mail == "") {
+                    /*$_SESSION["verif"] = true;*/
+                    return true;      
+            } else {
+                /*$_SESSION["verif"] = false;*/
+                return false;
             }
         } else {
-            $_SESSION["verif"] = false;
+           // $_SESSION["verif"] = false;
+           return true;
         }
     }
 }

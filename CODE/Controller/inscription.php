@@ -13,10 +13,11 @@ require_once("../Model/fonctions.php");
 
 $email = trim(filter_input(INPUT_POST, "email"), FILTER_SANITIZE_EMAIL);
 $username = trim(filter_input(INPUT_POST, "pseudo"), FILTER_SANITIZE_SPECIAL_CHARS);
-$password = trim(filter_input(INPUT_POST, "password"), FILTER_SANITIZE_SPECIAL_CHARS);
-fonctions::verifinscription($email, $username);
-if($_SESSION["verif"] == true) {
-    echo $email," ", $username, "", $password;
+$password = trim(filter_input(INPUT_POST, "password"));
+$verif = fonctions::verifinscription($email, $username);
+if($verif == true) {
+    fonctions::inscription($email, $username, $password);
+    header("location:../Vue/login.php");
 } else {
-  echo "fail";
+    header("location:../Vue/inscription.php");
 }

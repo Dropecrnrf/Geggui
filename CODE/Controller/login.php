@@ -23,6 +23,7 @@ if($_SESSION["logged"] == true) {
 } elseif ($_SESSION["logged"] == true && $_SESSION["role"]) {
  /* header("location:../vue/accueilArtiste.php");*/
  echo "admin";
+ header("location:../Vue/login.php");
 } elseif($_SESSION["logged"] == false) {
   header("location:../Vue/login.php");
 }
