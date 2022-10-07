@@ -24,10 +24,5 @@ if($_SESSION["logged"] == true) {
  /* header("location:../vue/accueilArtiste.php");*/
  echo "admin";
 } elseif($_SESSION["logged"] == false) {
-} /*elseif ($_SESSION["logged"] == true) {
-  header("location:../vue/accueilArtiste.php");
-  echo "admin";
-}*/ elseif($_SESSION["logged"] == false) {
-
   header("location:../Vue/login.php");
 }
