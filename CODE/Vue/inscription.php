@@ -19,7 +19,7 @@
        
         <div class="login-form">
             <form method="post" action="../Controller/inscription.php">
-                
+            <img class="mb-4" src="../IMG/logoMini.png" alt="" width="72" height="57">
                 <h1 class="h3 mb-3 fw-normal">Inscription</h1>
                 <div class="form-floating">
                     <input type="text" name="pseudo" class="form-control" id="floatingInput" placeholder="User" autocomplete="off" value="<?php if (isset($pseudo)) {echo $pseudo;} ?>">
