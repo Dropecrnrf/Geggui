@@ -10,7 +10,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Geggui | Accueil</title>
+  <title>Geggui | Profil</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
 

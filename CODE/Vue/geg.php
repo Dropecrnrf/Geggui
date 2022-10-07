@@ -10,7 +10,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Geggui | Accueil</title>
+  <title>Geggui | Geg</title>
   <link rel="stylesheet" href="../style.css" />
 </head>
 
@@ -109,10 +109,9 @@
 
     <div class="b-example-divider b-example-vr"></div>
 
-    <form action="geg.php" class="">
-    <p><label for="w3review">Quoi de neuf :</label></p>
+    <form action="geg.php" class="geg">
+    <p><label for="w3review">ÇA DIT QUOI L'EQUIPE ?</label></p>
     <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-    <br>
     <input type="submit" value="GEG">
   </form>
 
