@@ -35,16 +35,10 @@ class fonctions{
             foreach ($donneeUser as $key => $value) {
                 $pseudo = $value->pseudo;
                 $mdp = $value->mot_de_passe;
-                $role = $value->role;
             }
             if ($mdp != "") {
                 if (password_verify($password, $mdp)) {
                     $_SESSION["logged"] = true;
-                    if($role == 1) {
-                        $_SESSION["role"] = true;
-                    } else{
-                        $_SESSION["role"] = false;
-                    }
                 } 
                 else {
                     $_SESSION["logged"] = false;
@@ -95,7 +89,7 @@ class fonctions{
     }
     public static function inscription($email, $username, $password) {
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO USER (idUser, email, pseudo, mot_de_passe, role) VALUES(NULL, '$email','$username','$password', '0');";
+        $sql = "INSERT INTO USER (idUser, email, pseudo, mot_de_passe) VALUES(NULL, '$email','$username','$password');";
         $query = db()->prepare($sql);    // preparer la requete sql
         $query->execute();    // executer la requete sql
         $records = $query->fetchAll(PDO::FETCH_ASSOC);    // recuperer les donnees de la base

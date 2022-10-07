@@ -20,10 +20,6 @@ fonctions::login($pseudo, $password);
 if($_SESSION["logged"] == true) {
   header("location:../Vue/geg.php");
   echo "user";
-} elseif ($_SESSION["logged"] == true && $_SESSION["role"]) {
- /* header("location:../vue/accueilArtiste.php");*/
- echo "admin";
- header("location:../Vue/login.php");
 } elseif($_SESSION["logged"] == false) {
   header("location:../Vue/login.php");
 }
