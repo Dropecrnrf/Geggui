@@ -36,20 +36,49 @@ class fonctions
             foreach ($donneeUser as $key => $value) {
                 $pseudo = $value->pseudo;
                 $mdp = $value->mot_de_passe;
-            }
-            if ($mdp != "") {
-                if (password_verify($password, $mdp)) {
-                    $_SESSION["logged"] = true;
-                    $_SESSION["pseudo"] = $pseudo; 
-                } else {
-                    $_SESSION["logged"] = false;
+                if ($mdp != "") {
+                    if (password_verify($password, $mdp)) {
+                        $_SESSION["logged"] = true;
+                        $_SESSION["pseudo"] = $pseudo; 
+                    } else {
+                        $_SESSION["logged"] = false;
+                    }
                 }
             }
+            
         } else {
             $_SESSION["logged"] = false;
         }
         
     }
+
+    public static function verifLoginError($pseudo, $password){
+        $donneeUser = fonctions::tableUserMdp($pseudo);
+        $mdp = "";
+        $error = "";
+       
+        foreach ($donneeUser as $key => $value) {
+            $mdp = $value["mot_de_passe"];
+            $verifPasse = password_verify($password, $mdp);
+            if ($value["mot_de_passe"] == "") {
+                $error .= "Vous avez oublié le mot de passe <br>";
+            }
+            elseif($value["mot_de_passe"] != $verifPasse){
+                $error .= "Vous n'avez pas rentrez le bon mot de passe <br>";
+            }
+
+            if ($value["pseudo"] == "") {
+                $error .= "Vous avez oublié le bon pseudo <br>";
+            }
+            elseif($value["pseudo"] != $pseudo){
+                $error .= "Vous n'avez pas rentrez le bon pseudo <br>";
+            }
+        }
+
+        return $error;
+
+    }
+
     public static function logout()
     {
         // ------------- début solution logout ----------------
@@ -146,7 +175,16 @@ class fonctions
 
         return $records;
     }
+     
+    public static function verifRole($nameUsers){
+        $sql = "SELECT `role` FROM utilisateur WHERE pseudo = '$nameUsers'";
+        $query = db()->prepare($sql);
+        $query->execute();
+        $records = $query->fetchAll(PDO::FETCH_ASSOC);
 
+        return $records;
+
+    }
     public static function prendreMessagePerso()
     {
         $sql = "SELECT `MESSAGE`.`content`, UTILISATEUR.`pseudo` FROM `dbGeggui`.`MESSAGE` JOIN `dbGeggui`.UTILISATEUR ON UTILISATEUR.`idUser` = `MESSAGE`.`idUser` WHERE UTILISATEUR.`pseudo` = :userConnected";
@@ -173,5 +211,9 @@ class fonctions
         $query->execute();
     }
 
-    
+    public static function supprimerMessage($content){
+        $sql = "DELETE FROM dbGeggui.message WHERE content='$content';";
+        $query = db()->prepare($sql);
+        $query->execute();
+    }
 }

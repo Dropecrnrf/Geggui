@@ -13,6 +13,12 @@ $content = filter_input(INPUT_POST, "w3review", FILTER_SANITIZE_STRING);
 if ($btnAddContent == "GEG") {
   FContent::addContent($content);
 }
+
+$content = filter_input(INPUT_GET, "btn", FILTER_SANITIZE_STRING);
+$_SESSION["content"] = $content;
+if ($content != NULL) {
+    include "../Controller/supprimerMessage.php";
+}
 ?>
 <!doctype html>
 <html lang="en">

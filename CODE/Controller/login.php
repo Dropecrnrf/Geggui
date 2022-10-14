@@ -17,9 +17,11 @@ require_once("../Model/fonctions.php");
 $pseudo = trim(filter_input(INPUT_POST, "pseudo", FILTER_SANITIZE_SPECIAL_CHARS));
 $password = trim(filter_input(INPUT_POST, "password"));
 fonctions::login($pseudo, $password);
+
+
+
 if($_SESSION["logged"] == true) {
   header("location:../Vue/geg.php");
-  echo "user";
 } elseif($_SESSION["logged"] == false) {
   header("location:../Vue/login.php");
 }

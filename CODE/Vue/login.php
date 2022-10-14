@@ -4,6 +4,8 @@ if ($deconnexion == "yes") {
     $_SESSION["pseudo"] = "";
     $_SESSION["logged"] = false;    
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -46,6 +48,7 @@ if ($deconnexion == "yes") {
             </div><br>
             
             <button class="w-100 btn btn-lg btn-primary" name="formConnect" type="submit">Sign in</button>
+            <div><?php include "../Controller/errorLogin.php" ?></div>
                
             </form>
              <br><br>                                                                                                   
