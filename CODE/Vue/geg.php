@@ -4,7 +4,10 @@
   Version : V1
   Titre   : Projet Geggui - M426
 -->
-
+<?php
+  require_once("../Controller/affichageMessage.php");
+  require_once("../Controller/ajouterMessage.php");
+?>
 <!doctype html>
 <html lang="en">
 
@@ -83,41 +86,50 @@
           </a>
         </li>
         <li>
-          <a href="geg.php" class="nav-link active" aria-current="page">
+        <a href="geg.php" class="nav-link active" aria-current="page">
             <svg class="bi pe-none me-2" width="16" height="16">
               <use xlink:href="#speedometer2" />
             </svg>
             Geg
           </a>
         </li>
+        <li>
+          <a href="profil.php" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16">
+              <use xlink:href="#speedometer2" />
+            </svg>
+            Profil
+          </a>
+        </li>
+        <li>
+          <a href="login.php?deconnexion=yes" class="nav-link link-dark">
+            <svg class="bi pe-none me-2" width="16" height="16">
+              <use xlink:href="#speedometer2" />
+            </svg>
+            Déconnexion
+          </a>
+        </li>
       </ul>
       <hr>
-      <div class="dropdown">
-        <a href="profil.php" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <div>
+        <a href="profil.php" class="d-flex align-items-center link-dark text-decoration-none" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>jojo(mettre profil)</strong>
+          <strong><?= $_SESSION["pseudo"] ?></strong>
         </a>
-        <ul class="dropdown-menu text-small shadow">
-          <li><a class="dropdown-item" href="profil.php">Profil</a></li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li><a class="dropdown-item" href="login.php">Sign in/out (si connecter ou pas)</a></li>
-        </ul>
       </div>
     </div>
 
     <div class="b-example-divider b-example-vr"></div>
 
-    <form action="geg.php" class="geg">
-    <p><label for="w3review">ÇA DIT QUOI L'EQUIPE ?</label></p>
-    <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
-    <input type="submit" value="GEG">
-  </form>
+    <form action="accueil.php" class="geg" method="POST">
+      <p><label for="w3review">ÇA DIT QUOI L'EQUIPE ?</label></p>
+      <textarea id="w3review" name="w3review" rows="4" cols="50"></textarea>
+      <input type="submit" name="btnAdd" value="GEG">
+    </form>
 
   </main>
 
- 
+
 
 
   <script src="../index.js"></script>

@@ -1,9 +1,9 @@
 <?php 
 require_once("../Model/fonctions.php");
 
-function afficherMessage()
+function afficherMessagePerso()
     {
-        $tableau = fonctions::prendreMessage();
+        $tableau = fonctions::prendreMessagePerso();
         foreach ($tableau as $key => $value) {
             echo    "<div class=\"card\" style=\"width: auto; margin-left:20px; margin-top: 10px;\">
                         <div class=\"card-body\">

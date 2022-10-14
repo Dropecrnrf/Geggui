@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Model fonctions
  * 
@@ -18,7 +17,7 @@ class fonctions
     public static function tableUserMdp($pseudo)
     {
         // Préparation de la requete
-        $query = db()->prepare("SELECT * FROM USER WHERE pseudo = ?");
+        $query = db()->prepare("SELECT * FROM UTILISATEUR WHERE pseudo = ?");
 
         // Execution de la requete
         $query->execute([$pseudo]);
@@ -30,7 +29,7 @@ class fonctions
     }
     public static function login($pseudo, $password)
     {
-
+        $_SESSION["pseudo"] = "";
         $donneeUser = fonctions::tableUserMdp($pseudo);
         $mdp = "";
         if ($donneeUser !== false) {
@@ -49,6 +48,7 @@ class fonctions
         } else {
             $_SESSION["logged"] = false;
         }
+        
     }
     public static function logout()
     {
@@ -79,7 +79,7 @@ class fonctions
     public static function tableUserVerif($email)
     {
         // Préparation de la requete
-        $query = db()->prepare("SELECT * FROM USER WHERE email = ?");
+        $query = db()->prepare("SELECT * FROM UTILISATEUR WHERE email = ?");
 
         // Execution de la requete
         $query->execute([$email]);
@@ -92,7 +92,7 @@ class fonctions
     public static function inscription($email, $username, $password)
     {
         $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO USER (idUser, email, pseudo, mot_de_passe) VALUES(NULL, '$email','$username','$password');";
+        $sql = "INSERT INTO UTILISATEUR (idUser, email, pseudo, mot_de_passe) VALUES(NULL, '$email','$username','$password');";
         $query = db()->prepare($sql);    // preparer la requete sql
         $query->execute();    // executer la requete sql
         $records = $query->fetchAll(PDO::FETCH_ASSOC);    // recuperer les donnees de la base
@@ -121,8 +121,8 @@ class fonctions
 
     public static function prendreUtilisateurConnecter($nameUsers)
     {
-        $sql = "SELECT `USER`.`idUser` FROM dbGeggui.`USER`
-        WHERE `USER`.`pseudo` = '$nameUsers';";
+        $sql = "SELECT UTILISATEUR.`idUser` FROM dbGeggui.UTILISATEUR
+        WHERE UTILISATEUR.`pseudo` = '$nameUsers';";
         $query = db()->prepare($sql);
         $query->execute();
         $records = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -139,8 +139,19 @@ class fonctions
 
     public static function prendreMessage()
     {
-        $sql = "SELECT `MESSAGE`.`content`, `USER`.`pseudo` FROM `dbGeggui`.`MESSAGE` JOIN `dbGeggui`.`USER` ON `USER`.`idUser` = `MESSAGE`.`idUser`";
+        $sql = "SELECT `MESSAGE`.`content`, UTILISATEUR.`pseudo` FROM `dbGeggui`.`MESSAGE` JOIN `dbGeggui`.UTILISATEUR ON UTILISATEUR.`idUser` = `MESSAGE`.`idUser`";
         $query = db()->prepare($sql);
+        $query->execute();
+        $records = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $records;
+    }
+
+    public static function prendreMessagePerso()
+    {
+        $sql = "SELECT `MESSAGE`.`content`, UTILISATEUR.`pseudo` FROM `dbGeggui`.`MESSAGE` JOIN `dbGeggui`.UTILISATEUR ON UTILISATEUR.`idUser` = `MESSAGE`.`idUser` WHERE UTILISATEUR.`pseudo` = :userConnected";
+        $query = db()->prepare($sql);
+        $query->bindValue(':userConnected', $_SESSION['pseudo']);
         $query->execute();
         $records = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -148,17 +159,16 @@ class fonctions
     }
 
     public static function takeIdByUser($userName){
-        $sql = "SELECT idUser FROM dbGeggui.`USER` WHERE pseudo = $userName;";
+        $sql = "SELECT idUser FROM dbGeggui.UTILISATEUR WHERE pseudo = '$userName'";
         $query = db()->prepare($sql);
         $query->execute();
-        $records = $query->fetchAll(PDO::FETCH_ASSOC);
+        $records = $query->fetch(PDO::FETCH_COLUMN);
 
         return $records;
     }
 
     public static function ajouterMessage($message ,$idUser){
-        
-        $sql = "INSERT INTO dbGeggui.MESSAGE (nbLike, content, idUser)VALUES(NULL, $message, $idUser);";
+        $sql = "INSERT INTO dbGeggui.MESSAGE (nbLike, content, idUser) VALUES(NULL, '$message', $idUser);";
         $query = db()->prepare($sql);
         $query->execute();
     }

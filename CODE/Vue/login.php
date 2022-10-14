@@ -1,4 +1,10 @@
-
+<?php
+$deconnexion = filter_input(INPUT_GET, "deconnexion", FILTER_SANITIZE_STRING);
+if ($deconnexion == "yes") {
+    $_SESSION["pseudo"] = "";
+    $_SESSION["logged"] = false;    
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
