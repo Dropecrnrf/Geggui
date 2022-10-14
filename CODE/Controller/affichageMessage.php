@@ -9,7 +9,7 @@ function afficherMessage()
                         <div class=\"card-body\">
                             <h5 class=\"card-title\">" . $value['pseudo'] . "</h5>
                             <p class=\"card-text\">" . $value['content'] . "</p>
-                            <a href=\"#\" class=\"btn btn-primary\">Commenter</a>
+                            <a href=\"#\" class=\"btn btn-primary\">Commenter   </a>
                         </div>
                     </div>";
         }

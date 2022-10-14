@@ -41,6 +41,7 @@ class fonctions
             if ($mdp != "") {
                 if (password_verify($password, $mdp)) {
                     $_SESSION["logged"] = true;
+                    $_SESSION["pseudo"] = $pseudo; 
                 } else {
                     $_SESSION["logged"] = false;
                 }
@@ -144,6 +145,22 @@ class fonctions
         $records = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $records;
+    }
+
+    public static function takeIdByUser($userName){
+        $sql = "SELECT idUser FROM dbGeggui.`USER` WHERE pseudo = $userName;";
+        $query = db()->prepare($sql);
+        $query->execute();
+        $records = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $records;
+    }
+
+    public static function ajouterMessage($message ,$idUser){
+        
+        $sql = "INSERT INTO dbGeggui.MESSAGE (nbLike, content, idUser)VALUES(NULL, $message, $idUser);";
+        $query = db()->prepare($sql);
+        $query->execute();
     }
 
     
